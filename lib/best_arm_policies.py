@@ -43,7 +43,7 @@ def successive_elimination_policy(arms_: list,
     lcb_lst = []
 
     # ループスタート
-    while n <= max_iter:  # 安全のため、nが一定の値に達したらストップする。
+    for n in range(1, max_iter+1):  # nは[1, max_iter]の範囲をとる。
 
         # 対象リストに含まれるすべてのアームを1回引く(無効化済みのアームはnp.nanを返す)
         if n == 1:
@@ -143,7 +143,7 @@ def lucb_policy(arms_: list,
     rewords = np.array(reword_init).reshape(1, num_arms)
 
     # ループスタート
-    while t <= max_iter:  # 安全のため、tが一定の値に達したらストップする。
+    for t in range(1, max_iter+1):  # tは[1, max_iter]の範囲をとる。
 
         # 各アームiのUCB, LCBスコア(6.5)を計算
         rw_mean = np.nanmean(rewords, axis=0)  # 全アームの標本平均(前回引かれなかったアームについても平均を出力)
